@@ -12,10 +12,12 @@ Jeremytubbs\Lair\LairServiceProvider::class,
 
 Publish Lair `$ php artisan vendor:publish`
 
+#### Most important! add the `HasRoles` trait to your User model.
+
 
 This package is some what based on [Jeffrey Way's](https://twitter.com/jeffrey_way) video on [Laracasts](https://laracasts.com/series/whats-new-in-laravel-5-1/episodes/16) and its [Github Repo](https://github.com/laracasts/laravel-5-roles-and-permissions-demo).
 
 
-Todo -
+#### Todo -
 - Add admin area for managing users/roles/permissions
 - API for Auth
