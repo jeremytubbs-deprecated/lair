@@ -1,0 +1,20 @@
+{
+    "name": "jeremytubbs/lair",
+    "description": "Roles and Permissions for Laravel 5.1",
+    "keywords": ["laravel5"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jeremytubbs",
+            "email": "jeremytubbs@gmail.com"
+        }
+    ],
+    "require": {
+        "php" : ">=5.5.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jeremytubbs\\Lair\\": "src"
+        }
+    }
+}
