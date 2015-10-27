@@ -19,14 +19,6 @@ class LairServiceProvider extends ServiceProvider
             require __DIR__.'/Http/routes.php';
         }
 
-        // load views
-        $this->loadViewsFrom(__DIR__.'/../resources/views/lair', 'lair');
-
-        // publish auth views
-        $this->publishes([
-            __DIR__.'/../resources/views/auth' => base_path('resources/views/auth'),
-        ]);
-
         // load middleware
         $this->app['router']->middleware('roles', \Jeremytubbs\Lair\Http\Middleware\CheckRoles::class);
         $this->app['router']->middleware('permissions', \Jeremytubbs\Lair\Http\Middleware\CheckPermissions::class);
@@ -49,6 +41,14 @@ class LairServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerBladeExtensions();
+
+        // load views
+        $this->loadViewsFrom(__DIR__.'/../resources/views/lair', 'lair');
+
+        // publish auth views
+        $this->publishes([
+            __DIR__.'/../resources/views/auth' => base_path('resources/views/auth'),
+        ]);
     }
 
     /**
