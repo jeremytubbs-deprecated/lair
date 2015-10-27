@@ -48,7 +48,8 @@ class LairServiceProvider extends ServiceProvider
         // publish auth views
         $this->publishes([
             __DIR__.'/../resources/views/auth' => base_path('resources/views/auth'),
-        ]);
+            __DIR__.'/../resources/views/emails/password.blade.php' => base_path('resources/views/emails/password.blade.php'),
+        ], 'views');
     }
 
     /**
