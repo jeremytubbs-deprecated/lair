@@ -28,7 +28,7 @@ class LairServiceProvider extends ServiceProvider
         if (!class_exists('CreateLairTables')) {
             // Publish the migration
             $this->publishes([
-                __DIR__.'/../database/migrations/create_lair_tables.php' => $this->app->basePath().'/'.'database/migrations/2014_10_12_000000_create_lair_tables.php',
+                __DIR__.'/../database/migrations/create_lair_tables.php' => $this->app->basePath().'/'.'database/migrations/2015_10_12_000000_create_lair_tables.php',
             ], 'migrations');
         }
 
@@ -45,6 +45,10 @@ class LairServiceProvider extends ServiceProvider
         // load views
         $this->loadViewsFrom(__DIR__.'/../resources/views/lair', 'lair');
 
+        $this->publishes([
+            __DIR__.'/../config/lair.php' => config_path('lair.php'),
+        ], 'config');
+
         // publish auth views
         $this->publishes([
             __DIR__.'/../resources/views/auth' => base_path('resources/views/auth'),
@@ -58,13 +62,14 @@ class LairServiceProvider extends ServiceProvider
     protected function registerBladeExtensions()
     {
         $this->app->afterResolving('blade.compiler', function (BladeCompiler $bladeCompiler) {
+            // @role
             $bladeCompiler->directive('role', function ($role) {
                 return "<?php if(auth()->check() && auth()->user()->hasRole({$role})): ?>";
             });
             $bladeCompiler->directive('endrole', function () {
                 return '<?php endif; ?>';
             });
-
+            // @owner
             $bladeCompiler->directive('owner', function ($id) {
                 return "<?php if(auth()->check() && auth()->user()->isOwner({$id})): ?>";
             });
